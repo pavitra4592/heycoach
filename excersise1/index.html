@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form Validation</title>
+  
+  <style>
+    
+    .error {
+      color: red;
+    }
+   
+    #contactForm{
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px;
+  background-color: #ADD8E6;
+  font-size: 18px;
+  margin: auto;
+  width: 60%;
+  border: 2px solid;
+    }
+    
+    h1{
+      text-align:center;
+      color: black;
+    }
+
+    #submit{
+  border-radius: 10px;
+  background-color: pink;
+  font-size: 10px;
+  width: 15%;
+  border: 2px solid;      
+    }
+    
+  </style>
+</head>
+<body>
+
+  <h1>Contact Form</h1>
+  <form id="contactForm" onsubmit="validateForm(event)">
+    
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+    <span id="firstNameError" class="error"></span><br>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+    <span id="lastNameError" class="error"></span><br>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" placeholder="Enter your age">
+    <span id="ageError" class="error"></span><br>  
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" placeholder="Enter your date of birth">
+    <span id="dobError" class="error"></span><br>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number">
+    <span id="phoneNumberError" class="error"></span><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email">
+    <span id="emailError" class="error"></span><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password">
+    <span id="passwordError" class="error"></span><br>
+
+    <input id="submit" type="submit" value="Submit">
+  </form>
+  
+  <script>
+    function validateForm(event) {
+      var firstName = document.getElementById('firstName').value;
+      var lastName = document.getElementById('lastName').value;
+      var age = document.getElementById('age').value;
+      var dob = document.getElementById('dob').value;
+      var phoneNumber = document.getElementById('phoneNumber').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+
+      var firstNameError = document.getElementById('firstNameError');
+      var lastNameError = document.getElementById('lastNameError');
+      var ageError = document.getElementById('ageError');
+      var dobError = document.getElementById('dobError');
+      var phoneNumberError = document.getElementById('phoneNumberError');
+      var emailError = document.getElementById('emailError');
+      var passwordError = document.getElementById('passwordError');
+
+      if (firstName.trim() === "") {
+        firstNameError.textContent = "Please enter your first name.";
+        event.preventDefault();
+      } else {
+        firstNameError.textContent = "";
+      }
+
+      if (lastName.trim() === "") {
+        lastNameError.textContent = "Please enter your last name.";
+        event.preventDefault();
+      } else {
+        lastNameError.textContent = "";
+      }
+
+      if (isNaN(age) || age <= 0) {
+        ageError.textContent = "Age must be a positive number.";
+        event.preventDefault();
+      } else {
+        ageError.textContent = "";
+      }
+
+      var phoneNumberRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+      if (!phoneNumberRegex.test(phoneNumber)) {
+        phoneNumberError.textContent = "Invalid phone number.";
+        event.preventDefault();
+      }else{
+        phoneNumberError.textContent="";
+      }
+      
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        emailError.textContent = "Invalid email address.";
+        event.preventDefault();
+      } else {
+        emailError.textContent = "";
+      }
+
+      if (password.length < 6) {
+        passwordError.textContent = "Password must be at least 6 characters.";
+        event.preventDefault();
+      } else {
+        passwordError.textContent = "";
+      }
+    }
+  </script>
+
+</body>
+</html>
