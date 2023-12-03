@@ -1,0 +1,27 @@
+.error {
+    color: red;
+  }
+ 
+  #contactForm{
+border-radius: 5px;
+padding: 20px;
+margin: 20px;
+background-color: #ADD8E6;
+font-size: 18px;
+margin: auto;
+width: 60%;
+border: 2px solid;
+  }
+  
+  h1{
+    text-align:center;
+    color: black;
+  }
+
+  #submit{
+border-radius: 10px;
+background-color: pink;
+font-size: 15px;
+width: 15%;
+border: 2px solid;      
+  }
